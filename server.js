@@ -40,6 +40,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('views', './views');
+app.get('/', (req, res) => {
+    res.render('home');
+    
+    });
+
+    app.get('/add', (req, res) => {
+        res.render('form');
+        
+        });
+
 // use routes defined in controllers
 app.use(apiRoutes);
 

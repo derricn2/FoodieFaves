@@ -12,7 +12,7 @@ Recipe.init(
             autoIncrement: true
         },
         name: {
-            type: DataTpes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         description: {
@@ -35,13 +35,13 @@ Recipe.init(
             }
         },
         user_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id'
             }
         },
-    }
+    },{sequelize}
 );
 
 module.exports = Recipe;

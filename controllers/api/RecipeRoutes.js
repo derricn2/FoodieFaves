@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const RecipeController = require('../controllers/api/RecipeController');
+const RecipeController = require('./RecipeControllers');
 
 // GET all recipes
 router.get('/recipes', RecipeController.getAllRecipes);
