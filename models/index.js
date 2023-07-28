@@ -17,3 +17,5 @@ Recipe.hasOne(Step, {
 Step.belongsTo(Recipe, {
     foreignKey: 'recipe_id'
 });
+
+module.exports = { User, Recipe, Step };
