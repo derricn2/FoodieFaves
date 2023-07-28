@@ -34,19 +34,20 @@ Recipe.init(
                 // can put a message that says "please put 'home recipe' if unsure what type of cuisine when recording new recipes
             }
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        },
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'recipe'
+       // user_id: {
+           // type: DataTypes.INTEGER,
+            //references: {
+                //model: 'user',
+               // key: 'id'
+           // }
+       // },
+       // sequelize,
+       // timestamps: false,
+        //freezeTableName: true,
+       // underscored: true,
+        //modelName: 'recipe'
     },
+    {sequelize}
 );
 
 module.exports = Recipe;

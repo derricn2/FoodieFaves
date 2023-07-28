@@ -1,10 +1,21 @@
-<form>
+<form method ="post" action="/api/recipes">
 
 
-<input placeholder="name">
-<input placeholder="flavor">
+<input placeholder="name" name="name">
+<textarea placeholder = "description" rows=3 cols=15 name="description" ></textarea>
+<select name="flavor">
+<option value="savory">savory</option>
+<option value="sweet">sweet</option>
+<option value="sour">sour</option>
+<option value="bitter">bitter</option>
+<option value="umami">umami</option>
+</select>
 
-<button>add</button>
+<input placeholder="cuisine" name="cuisine"/>
+<input placeholder="userid" type="number" name="user_id" />
+
+
+<button type="submit">add</button>
 
 
 
