@@ -6,19 +6,19 @@ const recipeData = require('./RecipeData.json');
 const stepData = require('./StepData.json');
 
 const seedDatabase = async () => {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
 
-    await User.bulkcreate(userData, {
+    await User.bulkCreate(userData, {
         individualHooks: true,
         returning: true
     });
 
-    await Recipe.bulkcreate(recipeData, {
+    await Recipe.bulkCreate(recipeData, {
         individualHooks: true,
         returning: true
     });
 
-    await Step.bulkcreate(stepData, {
+    await Step.bulkCreate(stepData, {
         individualHooks: true,
         returning: true
     });
