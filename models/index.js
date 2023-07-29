@@ -19,4 +19,4 @@ Step.belongsTo(Recipe, {
 });
 
 
-module.exports = {User,Recipe,Step}
+module.exports = { User, Recipe, Step };
