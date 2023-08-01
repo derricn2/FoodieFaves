@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session'); // express session for managing user sessions
 const exphbs = require('express-handlebars'); // express handlebars for templating
-const apiRoutes = require('./controllers/api');
+const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
 //import sequelize connection and create session store using the SequelizeStore
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', './views');
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', );
     
     });
 
@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
         });
 
 // use routes defined in controllers
-app.use(apiRoutes);
+app.use(routes);
 
 // sync sequelize models to the database, then turn on the server
 sequelize.sync({ force: false }).then(() => {

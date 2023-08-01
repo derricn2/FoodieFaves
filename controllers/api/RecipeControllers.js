@@ -1,4 +1,4 @@
-const Recipe = require('../../models/Recipe');
+const { Recipe, Step } = require('../../models');
 
 const RecipeController = {
     getAllRecipes: async (req, res) => {
@@ -9,11 +9,11 @@ const RecipeController = {
             // Send the recipe as a JSON response
             //res.json(recipes);
             console.log(recipes[0].dataValues)
-            recipes=recipes.map(item=>item.dataValues)
+            recipes = recipes.map(item => item.dataValues)
             res.render('recipes', {recipes})
         } catch (error) {
             console.error('Error fetching recipes:', error);
-            res.status(500).json({ error: 'Unable to fetch recipes' });
+            res.status(500).json(error);
         }
     },
 
@@ -21,15 +21,21 @@ const RecipeController = {
         try {
             // retrieve a single recipe by ID from the database
             const recipeID = req.params.id;
-            const recipe = await Recipe.findByPk(recipeID);
-
+            const recipe = await Recipe.findByPk(recipeID,{
+                include: [
+                    {
+                        model: Step,
+                    }
+                ]
+            });
+            const recipeSer = recipe.get({ plain: true });
             // check if the recipe exists
             if (!recipe) {
                 return res.status(404).json({ error: 'Recipe not found' });
             }
 
             // send the recipe as a JSON response
-            res.json(recipe);
+            res.render('singleRecipe', recipeSer);
         } catch (error) {
             console.error('Error fetching recipe by ID:', error);
             res.status(500).json({ error: 'Unable to fetch recipe' });

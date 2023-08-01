@@ -3,7 +3,8 @@ const router = express.Router();
 const recipeRoutes = require('./RecipeRoutes');
 const userRoutes = require('./UserRoutes');
 
-router.use('/api', recipeRoutes);
-router.use('/api', userRoutes);
+//maybe change to /recipe and /user
+router.use('/recipes', recipeRoutes);
+router.use('/users', userRoutes);
 
 module.exports = router;
