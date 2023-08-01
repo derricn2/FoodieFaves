@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Recipe, User } = require('../../models');
 
 // this middleware checks if the user is logged in before accessing the favorites
 router.use((req, res, next) => {
@@ -13,7 +13,7 @@ router.use((req, res, next) => {
 // route to view favorites with user's posts
 router.get('/', async (req, res) => {
     try {
-        const postData = await Post.findAll({
+        const postData = await Recipe.findAll({
             where: { user_id: req.session.user_id },
             include: [{ model: User }],
         });
@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 // route to edit post
 router.get('/edit/:id', async (req, res) => {
     try {
-        const postData = await Post.findByPk(req.params.id);
+        const postData = await Recipe.findByPk(req.params.id);
 
         if(!postData) {
             res.status(404).json({ message: 'No post found with this id' });
