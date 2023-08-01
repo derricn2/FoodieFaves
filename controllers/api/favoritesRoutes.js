@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, User } = require('../models');
+const { Recipe, User } = require('../../models');
 
 // this middleware checks if the user is logged in before accessing the favorites
 router.use((req, res, next) => {
