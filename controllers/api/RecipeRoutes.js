@@ -3,12 +3,12 @@ const router = express.Router();
 const RecipeController = require('./RecipeControllers');
 
 // GET all recipes
-router.get('/recipes', RecipeController.getAllRecipes);
+router.get('/', RecipeController.getAllRecipes);
 
 // GET a single recipe by ID
-router.get('/recipes/:id', RecipeController.getRecipeById);
+router.get('/:id', RecipeController.getRecipeById);
 
 // POST a new recipe
-router.post('/recipes', RecipeController.createRecipe);
+router.post('/', RecipeController.createRecipe);
 
 module.exports = router;
