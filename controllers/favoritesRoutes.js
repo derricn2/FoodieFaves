@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post, User } = require('../models');
 
-// this middleware checks if the user is logged in before accessing the dashboard
+// this middleware checks if the user is logged in before accessing the favorites
 router.use((req, res, next) => {
     if (!req.session.logged_in) {
       res.redirect('/login'); // Redirect to the login page if the user is not logged in
@@ -10,7 +10,7 @@ router.use((req, res, next) => {
     }
   });
 
-// route to view dashboard with user's posts
+// route to view favorites with user's posts
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
             include: [{ model: User }],
         });
 
-        // render dashboard template with user posts
-        res.render('dashboard', {
+        // render favorites template with user posts
+        res.render('favorites', {
             user: req.session.user, // pass the logged-in user data to the view
             posts: postData.map((post) => post.get({ plain: true })),
         });
@@ -46,5 +46,7 @@ router.get('/edit/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
 
 module.exports = router;
