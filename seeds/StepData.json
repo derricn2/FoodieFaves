@@ -1,0 +1,16 @@
+[
+    {
+    
+      "details": "spaghetti and meatballs",
+      "recipe_id":1
+    },
+    {
+    
+      "details": "baked chicken",
+      "recipe_id":2
+    },
+    {
+      "details": "ahi tuna roll",
+      "recipe_id": 3
+    }
+  ]

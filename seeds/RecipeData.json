@@ -1,0 +1,23 @@
+[
+    {
+      "name": "pasta",
+      "description": "spaghetti and meatballs",
+      "flavor": "savory",
+      "cuisine":"Italian",
+      "user_id":1
+    },
+    {
+      "name": "baked chicken",
+      "description": "chicken and vegetables",
+      "flavor": "savory",
+      "cuisine":"american",
+      "user_id":2
+    },
+    {
+      "name": "sushi",
+      "description": "ahi tuna roll",
+      "flavor": "savory",
+      "cuisine":"asian",
+      "user_id":3
+    }
+  ]
