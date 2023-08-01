@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-    
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foodie Faves</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>Foodie Faves</title>
+    {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">   --}}
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
+<body>
+    <!-- Center the webpage title -->
+    <div class="title-container">
+        <h1>Foodie Faves</h1>
+    </div>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/favorites">Favorites</a></li>
+            <li><a href="/signup">Register</a></li>
+            <li><a href="/login">Log In</a></li>
+        </ul>
+    </nav>
+    <!-- End of Navbar -->
 
-
-    {{{body}}}
+    <!-- Recipe Cards -->
+    <div class="recipe-cards">
+        {{#each recipes}}
+        <div class="recipe-card">
+            <h3>{{this.title}}</h3>
+            <p>Recipe by: {{this.creator}}</p>
+            <p>Date created: {{this.date}}</p>
+            <p>{{this.contents}}</p>
+            <button class="comment-button">Leave a comment</button>
+        </div>
+        {{/each}}
+    </div>
+    <!-- End of Recipe Cards -->
 
 </body>
 </html>
