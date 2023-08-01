@@ -40,7 +40,8 @@ Recipe.init(
                 model: 'user',
                 key: 'id'
             }
-        },
+
+        }
     },
     {
         sequelize,
@@ -48,8 +49,7 @@ Recipe.init(
         freezeTableName: true,
         underscored: true,
         modelName: 'recipe'
-    },
-
+    }
 );
 
 module.exports = Recipe;

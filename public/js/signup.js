@@ -1,12 +1,12 @@
-// function to handle form submission for user login
-document.getElementById("loginForm").addEventListener("submit", (event) => {
+// function to handle form submission for user signup
+document.getElementById("signupForm").addEventListener("submit", (event) => {
     event.preventDefault();
   
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
   
-    // perform AJAX request to log in the user using fetch API
-    fetch("/api/users/login", {
+    // perform AJAX request to sign up the user using Fetch API
+    fetch("/api/users/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,21 +15,18 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
     })
       .then((response) => {
         if (!response.ok) {
-          // if the response status is not ok (e.g., 400 or 500 error), throw an error
           throw new Error("Network response was not ok");
         }
         return response.json();
       })
       .then((data) => {
         // handle success response and update the UI accordingly
-        console.log("User logged in successfully:", data);
+        console.log("User signed up successfully:", data);
         window.location.href = "/dashboard";
       })
       .catch((error) => {
         // handle error and update the UI accordingly
-        console.error("Error logging in:", error);
-        // display an error message on the page to inform the user
-        const errorMessageElement = document.getElementById("error-message");
-        errorMessageElement.textContent = "Invalid username or password. Please try again.";
+        console.error("Error signing up:", error);
       });
   });
+  
