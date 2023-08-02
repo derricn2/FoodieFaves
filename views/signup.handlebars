@@ -10,8 +10,14 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-half">
-                <h1 class="title has-text-centered">Login</h1>
-                <form action="/api/users/login" method="post">
+                <h1 class="title has-text-centered">Sign Up</h1>
+                <form action="/api/users/signup" method="post">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" name="name" placeholder="Enter your username" required>
+                        </div>
+                    </div>
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
@@ -26,10 +32,10 @@
                     </div>
                     <div class="field is-grouped">
                         <div class="control">
-                            <button type="submit" class="button is-primary">Login</button>
+                            <button type="submit" class="button is-primary">Sign Up</button>
                         </div>
                         <div class="control">
-                            <a href="/signup" class="button is-link">Sign Up</a>
+                            <a href="/login" class="button is-link">Login</a>
                         </div>
                     </div>
                 </form>

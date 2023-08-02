@@ -2,6 +2,9 @@ const { Recipe, Step } = require('../../models');
 
 const RecipeController = {
     getAllRecipes: async (req, res) => {
+        if(!req.session.user_id){
+            return res.render("unauthorized")   
+           }
         try {
             // Retrieve all recipes from the database
             let recipes = await Recipe.findAll();
@@ -18,6 +21,9 @@ const RecipeController = {
     },
 
     getRecipeById: async (req, res) => {
+        if(!req.session.user_id){
+            return res.render("unauthorized")   
+           }
         try {
             // retrieve a single recipe by ID from the database
             const recipeID = req.params.id;
@@ -43,19 +49,22 @@ const RecipeController = {
     },
 
     createRecipe: async (req, res) => {
+        if(!req.session.user_id){
+            return res.render("unauthorized")   
+           }
         try {
             console.log(req.body)
             // extract recipe details from the request body
-            const { name, description, flavor, cuisine, user_id } = req.body;
-
+            const { name, description, flavor, cuisine } = req.body;
+            let user_id=req.session.user_id
             // create a new recipe in the database
             const newRecipe = await Recipe.create({
-                name, description, flavor, cuisine
+                name, description, flavor, cuisine, user_id
                 // you may also associate the recipe with the currently logged-in user if you have authentication implemented.
             });
 
             // send the newly created recipe as a JSON response
-            res.json(newRecipe);
+            res.redirect("/api/recipes");
         } catch (error) {
             console.error('Error creating recipe:', error);
             res.status(500).json({ error: 'Unable to create recipe' });

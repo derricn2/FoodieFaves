@@ -15,7 +15,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // create an instance of the Handlebars templating engine, passing custom helpers
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ 
+    helpers: {   
+          withData: function(data, options) {      return options.fn({logged_in:req.session.logged_in});    }  }
+          } );
 
 // configure session middleware
 const sess = {
@@ -50,6 +53,13 @@ app.get('/', (req, res) => {
         res.render('form');
         
         });
+        app.get("/signup",(req,res)=>{
+            res.render("signup")
+        })
+
+        app.get("/login",(req,res)=>{
+            res.render("login")
+        })
 
 // use routes defined in controllers
 app.use(routes);

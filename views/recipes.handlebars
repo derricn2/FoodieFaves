@@ -1,13 +1,15 @@
 {{!-- need to link css / make the recipe names clearly clickable --}}
-<h1>Recipes List</h1>
+
 
 <div>
     {{#each recipes}}
-      <div >
-      <h1 class="recipe-name" data-id={{id}}>{{name}}</h1>
+      <div class="recipe-card">
+      <h2 class="recipe-name" data-id={{id}}>{{name}}</h2>
       <p>{{description}}</p>
+      <p><span>Flavor : </span>{{flavor}}</p>
+      <p><span>Cuisine : </span>{{cuisine}}</p>
       {{!-- step.details will show intructions --}} 
-   <h1>End of Recipe</h1>
+   
       </div>
     {{/each}}
   </div>

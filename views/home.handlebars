@@ -1,17 +1,7 @@
 <div class="container">
   <h1>Welcome to the Foodie Faves</h1>
 
-  {{#if blogPosts.length}}
-    {{#each blogPosts}}
-      <div class="post">
-        <h2 class="post-title">{{title}}</h2>
-        <p class="post-meta">Posted by {{author.username}} on {{createdAt}}</p>
-        <div class="post-content">{{{content}}}</div>
-      </div>
-    {{/each}}
-  {{else}}
-    <p>No recipe posts found.</p>
-  {{/if}}
+  
 
   {{#if isLoggedIn}}
     <a href="/favorites" class="favorites-btn">Go to Favorites</a>
