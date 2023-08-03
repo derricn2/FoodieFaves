@@ -23,7 +23,7 @@ document.getElementById("loginForm").addEventListener("submit", (event) => {
       .then((data) => {
         // handle success response and update the UI accordingly
         console.log("User logged in successfully:", data);
-        window.location.href = "/favorites";
+        window.location.href = "/recipes";
       })
       .catch((error) => {
         // handle error and update the UI accordingly
