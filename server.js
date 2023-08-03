@@ -4,7 +4,6 @@ const express = require('express');
 const session = require('express-session'); // express session for managing user sessions
 const exphbs = require('express-handlebars'); // express handlebars for templating
 const routes = require('./controllers');
-const helpers = require('./utils/helpers');
 
 //import sequelize connection and create session store using the SequelizeStore
 const sequelize = require('./config/connection')
