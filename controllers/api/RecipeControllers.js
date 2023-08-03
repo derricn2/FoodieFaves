@@ -5,18 +5,23 @@ const RecipeController = {
         if(!req.session.user_id){
             return res.render("unauthorized")   
            }
-        try {
-            // Retrieve all recipes from the database
-            let recipes = await Recipe.findAll();
-
-            // Send the recipe as a JSON response
-            //res.json(recipes);
-            console.log(recipes[0].dataValues)
-            recipes = recipes.map(item => item.dataValues)
-            res.render('recipes', {recipes})
+           try {
+            // Retrieve all recipes from the database associated with the logged-in user
+            let recipes = await Recipe.findAll({ where: { user_id: req.session.user_id } });
+    
+            // If no recipes found, render the 'recipes' view with a message
+            if (recipes.length === 0) {
+                return res.render('recipes', { loggedIn: req.session.logged_in, recipes });
+            }
+    
+            // Map the recipes to get plain data
+            recipes = recipes.map(recipe => recipe.get({ plain: true }));
+    
+            // Render the 'recipes' view with the recipes data
+            res.render('recipes', { recipes });
         } catch (error) {
             console.error('Error fetching recipes:', error);
-            res.status(500).json(error);
+            res.status(500).render('error', { error: 'An error occurred while fetching recipes.' });
         }
     },
 
@@ -68,6 +73,30 @@ const RecipeController = {
         } catch (error) {
             console.error('Error creating recipe:', error);
             res.status(500).json({ error: 'Unable to create recipe' });
+        }
+    },
+    
+    deleteRecipe: async (req, res) => {
+        if(!req.session.user_id){
+            return res.render("unauthorized")   
+        }
+        try {
+            // Retrieve the recipe with the given ID
+            const recipe = await Recipe.findOne({ where: { id: req.params.id } });
+    
+            // Check if the recipe exists and if it belongs to the logged-in user
+            if (!recipe || recipe.user_id !== req.session.user_id) {
+                return res.status(404).json({ error: 'Recipe not found' });
+            }
+    
+            // Delete the recipe
+            await recipe.destroy();
+    
+            // Redirect to the recipes page
+            res.redirect('/api/recipes');
+        } catch (error) {
+            console.error('Error deleting recipe:', error);
+            res.status(500).json({ error: 'Unable to delete recipe' });
         }
     },
 };
