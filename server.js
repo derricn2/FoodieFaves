@@ -22,8 +22,8 @@ const hbs = exphbs.create({
 
 // configure session middleware
 const sess = {
-    secret: 'process.env.SESSION_SECRET',
-    cookie: {},
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 86400000 },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
@@ -44,22 +44,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', './views');
-app.get('/', (req, res) => {
-    res.render('home', );
-    
-    });
-
-    app.get('/add', (req, res) => {
-        res.render('form');
-        
-        });
-        app.get("/signup",(req,res)=>{
-            res.render("signup")
-        })
-
-        app.get("/login",(req,res)=>{
-            res.render("login")
-        })
 
 // use routes defined in controllers
 app.use(routes);
