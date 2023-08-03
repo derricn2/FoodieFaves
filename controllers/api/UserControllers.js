@@ -13,7 +13,7 @@ const UserControllers = {
                 res.redirect("/")
             });
         } catch (err) {
-            res.redirect("/")
+            res.redirect("/signup")
         }
     }
     ,
@@ -60,4 +60,4 @@ const UserControllers = {
         }
     }
 }
-module.exports = UserControllers
+module.exports = UserControllers;
