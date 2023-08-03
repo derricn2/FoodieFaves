@@ -15,7 +15,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // create an instance of the Handlebars templating engine, passing custom helpers
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ 
+    helpers: {   
+          withData: function(data, options) {      return options.fn({logged_in:req.session.logged_in});    }  }
+          } );
 
 // configure session middleware
 const sess = {
@@ -39,6 +42,8 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('views', './views');
 
 // use routes defined in controllers
 app.use(routes);

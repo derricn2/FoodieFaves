@@ -9,6 +9,6 @@ router.post('/signup', UserController.signup);
 router.post('/login', UserController.login);
 
 // POST route for user logout
-router.post('/logout', UserController.logout);
-
+router.get('/logout', UserController.logout);
+router.get("/",(req,res)=>res.send("signup"))
 module.exports = router;

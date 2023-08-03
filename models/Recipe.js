@@ -33,6 +33,7 @@ Recipe.init(
                 isAlpha: true,
                 // can put a message that says "please put 'home recipe' if unsure what type of cuisine when recording new recipes
             }
+        
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -42,6 +43,7 @@ Recipe.init(
             }
 
         }
+
     },
     {
         sequelize,

@@ -1,57 +1,63 @@
 const User = require('../../models/User')
 const UserControllers = {
 
-    // function to handle user signup
-    signup: async (req, res)=>{
+    signup: async (req, res) => {
+        console.log(req.body)
         try {
-            const { username, email, password } = req.body;
-            // create new user in database
-            const user = await User.create({ name: username, email, password });
+            const userData = await User.create(req.body);
 
-            // save user ID to session to indicate user is logged in
             req.session.save(() => {
-                req.session.userId = user.id;
-                res.status(201).json({ message: 'Signup successful' });
+                req.session.user_id = userData.id;
+                req.session.logged_in = true;
+
+                res.redirect("/")
             });
         } catch (err) {
-            console.error(err);
-            res.status(500).json({ message: 'Internal server error' });
+            res.redirect("/signup")
         }
-    },
-
-    // function to handle user login
+    }
+    ,
     login: async (req, res) => {
         try {
-            const { username, password } = req.body;
-            // find user with given username in database
-            const user = await User.findOne({ where: { name: username } });
+            const userData = await User.findOne({ where: { email: req.body.email } });
 
-            // if the user is not found or password is incorrect:
-            if (!user || !user.checkPassword(password)) {
-                return res.status(401).json({ message: 'Invalid username or password' });
+            if (!userData) {
+                res
+                    .status(400)
+                    .json({ message: 'Incorrect email or password, please try again' });
+                return;
             }
 
-            // save user ID to session to indicate the user is logged in
-          req.session.userId = user.id;
-          res.status(200).json({ message: 'Login successful' });
-        } catch (err) {
-            console.error(err);
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    },
-    
-    // function to handle user logout
-    logout: (req, res) => {
-        try{
-            // clear user ID from session to indicate the user is logged out
-            req.session.destroy(() => {
-                res.status(200).json({ message: 'Logout successful' });
-            });
-        } catch (err) {
-            console.error(err);
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    },
-};
+            const validPassword = await userData.checkPassword(req.body.password);
 
+            if (!validPassword) {
+                res
+                    .status(400)
+                    .json({ message: 'Incorrect email or password, please try again' });
+                return;
+            }
+
+            req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.logged_in = true;
+
+                res.redirect("/")
+            });
+
+        } catch (err) {
+            res.status(400).json(err);
+        }
+    }
+    ,
+
+    logout: async (req, res) => {
+        if (req.session.logged_in) {
+            req.session.destroy(() => {
+                res.redirect("/")
+            });
+        } else {
+            res.redirect("/")
+        }
+    }
+}
 module.exports = UserControllers;

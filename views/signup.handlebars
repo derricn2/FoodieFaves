@@ -1,25 +1,46 @@
-<div class="container">
-  <h1>Sign Up</h1>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-<link rel="stylesheet" href="/public/css/style.css"> 
-<!-- Display the error message if it exists -->
-{{#if errorMessage}}
-  <p style="color: red;">{{errorMessage}}</p>
-{{/if}}
-
-<form id="signupForm" action="/api/users/signup" method="POST">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/style.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <h1 class="title has-text-centered">Sign Up</h1>
+                <form action="/api/users/signup" method="post">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" name="name" placeholder="Enter your username" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="password" name="password" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Sign Up</button>
+                        </div>
+                        <div class="control">
+                            <a href="/login" class="button is-link">Login</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn">Sign Up</button>
-  </form>
-  <script src="/public/js/signup.js"></script>
-
-  <p>Already have an account? <a href="/login">Login</a></p>
-</div>
-
+</body>
+</html>
