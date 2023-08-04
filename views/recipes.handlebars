@@ -1,16 +1,17 @@
-{{!-- need to link css / make the recipe names clearly clickable --}}
-
-
 <div>
-    {{#each recipes}}
-      <div class="recipe-card">
-      <h3 class="recipe-name" data-id={{id}}>{{name}}</h3>
-      <p>{{description}}</p>
-      <p><span>Flavor : </span>{{flavor}}</p>
-      <p><span>Cuisine : </span>{{cuisine}}</p>
-      {{!-- step.details will show intructions --}} 
-   
-      </div>
-    {{/each}}
-  </div>
-  <script src="/js/recipe.js"></script>
+    {{#if recipes.length}}
+        {{#each recipes}}
+        <div class="recipe-card">
+            <h3 class="recipe-name" data-id={{id}}>{{name}}</h3>
+            <p>{{description}}</p>
+            <p><span>Flavor : </span>{{flavor}}</p>
+            <p><span>Cuisine : </span>{{cuisine}}</p>
+            {{!-- step.details will show intructions --}} 
+            <button class="delete-recipe" data-id={{id}}>Delete Recipe</button>
+        </div>
+        {{/each}}
+    {{else}}
+        <p>No recipes found. Click "Add A Recipe" to get started!</p>
+    {{/if}}
+</div>
+<script src="/js/recipe.js"></script>

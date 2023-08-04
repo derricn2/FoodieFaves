@@ -55,7 +55,7 @@ nav a:hover {
   height: 100px;
   background-color: #333;
   color: #fff;
-  font-size: 24px;
+  font-size: 48px;
   font-weight: bold;
 }
 
@@ -114,6 +114,18 @@ nav a:hover {
   align-items: flex-start;
 
 }
+
+.add-recipe input,
+.add-recipe textarea,
+.add-recipe select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
 .add-recipe button{
   width:100%;
   outline:none;

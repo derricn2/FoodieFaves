@@ -17,9 +17,13 @@
             <li><a href="/">Homepage</a></li>
             <li><a href="/api/recipes">Recipes</a></li>
             <li><a href="/add">Add A Recipe</a></li>
+            {{#unless loggedIn}}
             <li><a href="/signup">Register</a></li>
             <li><a href="/login">Log In</a></li>
-        <li><a href="/api/users/logout">Log Out</a></li>
+            {{/unless}}
+            {{#if loggedIn}}
+            <li><a href="/api/users/logout">Log Out</a></li>
+            {{/if}}
         </ul>
     </nav>
     <!-- End of Navbar -->

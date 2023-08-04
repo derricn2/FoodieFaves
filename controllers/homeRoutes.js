@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', { loggedIn: req.session.logged_in });
 });
 
 router.get('/add', (req, res) => {
-  res.render('form');
+  res.render('form', { loggedIn: req.session.logged_in });
 });
 
 // login get route
