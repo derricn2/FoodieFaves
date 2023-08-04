@@ -29,7 +29,7 @@ async function deleteRecipe(recipeID) {
         if (response.ok) {
             location.reload();
         } else {
-            alert('Failed to delete recipe');
+            alert('You can only delete your OWN recipes!');
         }
     } catch (error) {
         console.error('Error:', error);
