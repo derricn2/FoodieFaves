@@ -7,7 +7,7 @@ const RecipeController = {
            }
            try {
             // Retrieve all recipes from the database associated with the logged-in user
-            let recipes = await Recipe.findAll({ where: { user_id: req.session.user_id } });
+            let recipes = await Recipe.findAll();
     
             // If no recipes found, render the 'recipes' view with a message
             if (recipes.length === 0) {
@@ -18,7 +18,7 @@ const RecipeController = {
             recipes = recipes.map(recipe => recipe.get({ plain: true }));
     
             // Render the 'recipes' view with the recipes data
-            res.render('recipes', { recipes });
+            res.render('recipes', { loggedIn: req.session.logged_in, recipes });
         } catch (error) {
             console.error('Error fetching recipes:', error);
             res.status(500).render('error', { error: 'An error occurred while fetching recipes.' });
